@@ -83,3 +83,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Tags
+GPATH
+GRTAGS
+GTAGS
+db.sqlite3
+tags
