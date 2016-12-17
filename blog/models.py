@@ -32,6 +32,7 @@ class Entry(models.Model):
     pub_date = models.DateTimeField('Published', default=timezone.now)
     mod_date = models.DateTimeField('Modified', default=timezone.now)
     authors = models.ManyToManyField(Author)
+    tags = models.ManyToManyField(Tag)
     n_comments = models.IntegerField('number of comments', default=0)
     n_pingbacks = models.IntegerField('number of pingbacks', default=0)
     rating = models.IntegerField(default=0)
