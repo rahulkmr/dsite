@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 class Blog(models.Model):
     name = models.CharField(max_length=100)
@@ -29,8 +28,8 @@ class Entry(models.Model):
     blog = models.ForeignKey(Blog)
     headline = models.CharField(max_length=255)
     body_text = models.TextField()
-    pub_date = models.DateTimeField('Published', default=timezone.now)
-    mod_date = models.DateTimeField('Modified', default=timezone.now)
+    pub_date = models.DateTimeField('Published', auto_now_add=True)
+    mod_date = models.DateTimeField('Modified', auto_now=True)
     authors = models.ManyToManyField(Author)
     tags = models.ManyToManyField(Tag)
     n_comments = models.IntegerField('number of comments', default=0)

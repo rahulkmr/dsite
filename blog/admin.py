@@ -24,7 +24,6 @@ class EntryAdmin(admin.ModelAdmin):
     list_display = ('headline', 'pub_date', 'mod_date',)
     list_filter = ('pub_date', 'rating')
     fields = (('blog', 'headline'), 'body_text', ('authors', 'tags'),
-              ('pub_date', 'mod_date'),
               ('n_comments', 'n_pingbacks', 'rating'))
     date_hierarchy = 'pub_date'
     search_fields = ('headline', 'authors__name', 'authors__email')
