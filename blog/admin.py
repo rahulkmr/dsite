@@ -19,6 +19,11 @@ class AuthorAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email')
 
 
+class CommentInline(admin.TabularInline):
+    model = Comment
+    extra = 0
+
+
 @admin.register(Entry)
 class EntryAdmin(admin.ModelAdmin):
     list_display = ('headline', 'pub_date', 'mod_date',)
@@ -27,11 +32,4 @@ class EntryAdmin(admin.ModelAdmin):
               ('n_comments', 'n_pingbacks', 'rating'))
     date_hierarchy = 'pub_date'
     search_fields = ('headline', 'authors__name', 'authors__email')
-
-
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('commenter', 'abridged_comment', 'entry')
-    fields = ('entry', 'commenter', 'comment')
-    date_hierarch = 'pub_date'
-    search_fields = ('commenter', 'comment')
+    inlines = [CommentInline]
