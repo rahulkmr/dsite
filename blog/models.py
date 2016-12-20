@@ -46,3 +46,10 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.headline
+
+
+class Comment(models.Model):
+    entry = models.ForeignKey(Entry)
+    commenter = models.CharField(max_length=100)
+    comment = models.TextField()
+    pub_date = models.DateTimeField('Commented on', auto_now_add=True)
