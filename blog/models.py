@@ -56,7 +56,12 @@ class Comment(models.Model):
     comment = models.TextField()
     pub_date = models.DateTimeField('Commented on', auto_now_add=True)
 
-    def __str__(self):
+
+    @property
+    def abridged_comment(self):
         comment = len(self.comment) < self.STRIPPED_COMMENT_LEN and self.comment or \
             '%s ...'  % self.comment[:20]
-        return '%s : %s' % (self.commenter, comment)
+        return comment
+
+    def __str__(self):
+        return '%s : %s' % (self.commenter, self.abridged_comment)
