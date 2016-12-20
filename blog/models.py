@@ -49,7 +49,14 @@ class Entry(models.Model):
 
 
 class Comment(models.Model):
+    STRIPPED_COMMENT_LEN = 20
+
     entry = models.ForeignKey(Entry)
     commenter = models.CharField(max_length=100)
     comment = models.TextField()
     pub_date = models.DateTimeField('Commented on', auto_now_add=True)
+
+    def __str__(self):
+        comment = len(self.comment) < self.STRIPPED_COMMENT_LEN and self.comment or \
+            '%s ...'  % self.comment[:20]
+        return '%s : %s' % (self.commenter, comment)
