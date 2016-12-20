@@ -25,6 +25,8 @@ class Tag(models.Model):
 
 
 class Entry(models.Model):
+    PAGE_LIMIT = 4
+
     blog = models.ForeignKey(Blog)
     headline = models.CharField(max_length=255)
     body_text = models.TextField()
