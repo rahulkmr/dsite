@@ -6,11 +6,16 @@
         <div class="entry_body">
             {{ object.body_text }}
         </div>
-        <h5>Comments</h4>
-        <div class="comments">
-            {% for comment in object.comment_set.all %}
-                <p><strong>{{ comment.commenter }}</strong> says: {{ comment.comment }}</p>
-            {% endfor %}
-        </div>
+    </div>
+    <h5>Comments</h4>
+    <div class="comments">
+        <form action="{% url 'blog:comment_add' pk=object.id %}" method="post">
+            {% csrf_token %}
+            {% include 'snippets/form_snippet.html' with form=comment_form %}
+            <input type="submit" value="Submit" />
+        </form>
+        {% for comment in object.comment_set.all %}
+            <p><strong>{{ comment.commenter }}</strong> says: {{ comment.comment }}</p>
+        {% endfor %}
     </div>
 {% endblock %}
