@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.urlresolvers import reverse
+
 
 class Blog(models.Model):
     name = models.CharField(max_length=100)
@@ -65,3 +67,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s : %s' % (self.commenter, self.abridged_comment)
+
+    def get_absolute_url(self):
+        return reverse('blog:detail', kwargs={'pk': self.entry_id})
