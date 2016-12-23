@@ -32,8 +32,7 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
-    'blog.apps.BlogConfig',
+    'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
+
+    'polls.apps.PollsConfig',
+    'blog.apps.BlogConfig',
 ]
 
 
