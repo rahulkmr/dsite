@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from ckeditor.fields import RichTextField
+
 
 class Blog(models.Model):
     name = models.CharField(max_length=100)
@@ -31,7 +33,7 @@ class Entry(models.Model):
 
     blog = models.ForeignKey(Blog)
     headline = models.CharField(max_length=255)
-    body_text = models.TextField()
+    body_text = RichTextField()
     pub_date = models.DateTimeField('Published', auto_now_add=True)
     mod_date = models.DateTimeField('Modified', auto_now=True)
     authors = models.ManyToManyField(Author)
